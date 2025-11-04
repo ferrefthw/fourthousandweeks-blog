@@ -1,14 +1,25 @@
 import { useEffect, useRef, useState } from 'react';
 import './App.css';
+import favicon from './assets/dopamine.jpg'; // <-- import the favicon
 
 function App() {
   const iframeRef = useRef(null);
   const [iframeSrc, setIframeSrc] = useState(null);
 
   useEffect(() => {
+    // Set favicon dynamically
+    let link = document.querySelector("link[rel~='icon']");
+    if (!link) {
+      link = document.createElement('link');
+      link.rel = 'icon';
+      document.head.appendChild(link);
+    }
+    link.href = favicon;
+
+    // IntersectionObserver for autoplay iframe
     const observer = new IntersectionObserver(
       ([entry]) => {
-        const src = 'https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1';
+        const src = 'https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=1&mute=1';
         if (entry.isIntersecting) {
           setIframeSrc(src); // load video
         } else {
