@@ -20,7 +20,7 @@ function App() {
     const observer = new IntersectionObserver(
       ([entry]) => {
         const src =
-          "https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=1&mute=0";
+          "https://www.youtube-nocookie.com/embed/dQw4w9WgXcQ?autoplay=1";
         if (entry.isIntersecting) {
           setIframeSrc(src); // load video
         } else {
